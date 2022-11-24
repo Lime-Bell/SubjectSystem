@@ -5,8 +5,10 @@ package org.example;
 import java.util.*;
 
 public class CourseDB {
+    // Total 課程列表
     public static List<Course> courseList = new ArrayList<>();
 
+    // 供回傳字串長度設定
     public static int maxIDLength = 7;
     public static int maxNameLength = 20;
     public static int maxClassLength = 15;
@@ -18,6 +20,7 @@ public class CourseDB {
     public static int maxTeacherLength = 5;
 
 
+    // 初始化 CourseDB
     public static void Initialized() {
         Course course;
         int id;
@@ -29,6 +32,7 @@ public class CourseDB {
         int c_seat;
         int m_seat;
         String teacher;
+        // 存入所有課程
         for (int i = 0; i < Course.courseNum; i++) {
             id = Course.returnCourseID(i);
             name = Course.returnCourseName(i);
@@ -45,6 +49,7 @@ public class CourseDB {
         }
 
     }
+    // 回傳所有Class
     public static List<String> ReturnAllClass(){
         List<String> classList = new ArrayList<>();
         for(int i = 0; i < Course.courseNum; i++){
@@ -57,6 +62,7 @@ public class CourseDB {
         return classList;
     }
 
+    //回傳所有Department
     public static List<String> ReturnAllDepartment(){
         List<String> departmentList = new ArrayList<>();
         for(int i = 0; i < Course.courseNum; i++){
@@ -68,16 +74,67 @@ public class CourseDB {
         }
         return departmentList;
     }
-    public  static List<String> ToList(){
+    // 將List<Course> 變成 List<String>
+    public  static List<String> ToList(List<Course> courseList){
 
         List<String> l = new ArrayList<>();
 
         for(Course course: courseList){
             l.add(course.ToCourseString());
-//            System.out.println(course.ToCourseString());
         }
 
         return l;
+    }
+
+    // 搜尋符合的courseID 在 courseList裡
+    public static List<Course> SearchID(String id, List<Course> courseList){
+        List<Course> newList = new ArrayList<>();
+        for(Course course: courseList){
+            if(id.contentEquals(String.valueOf(course.GetCourseID()))){
+                newList.add(course);
+            }
+        }
+        return newList;
+    }
+    // 搜尋符合的courseName 在 courseList裡
+    public static List<Course> SearchName(String name, List<Course> courseList){
+        List<Course> newList = new ArrayList<>();
+        for(Course course: courseList){
+            if(name.contentEquals(course.GetCourseName())){
+                newList.add(course);
+            }
+        }
+        return newList;
+    }
+    // 搜尋符合的courseClass 在 courseList裡
+    public static List<Course> SearchClass(String aclass, List<Course> courseList){
+        List<Course> newList = new ArrayList<>();
+        for(Course course: courseList){
+            if(aclass.contentEquals(course.GetCourseClass())){
+                newList.add(course);
+            }
+        }
+        return newList;
+    }
+    // 搜尋符合的Department 在 courseList裡
+    public static List<Course> SearchDepartment(String department, List<Course> courseList){
+        List<Course> newList = new ArrayList<>();
+        for(Course course: courseList){
+            if(department.contentEquals(course.GetDepartment())){
+                newList.add(course);
+            }
+        }
+        return newList;
+    }
+    // 搜尋符合的Teacher 在 courseList裡
+    public static List<Course> SearchTeacher(String teacher, List<Course> courseList){
+        List<Course> newList = new ArrayList<>();
+        for(Course course: courseList){
+            if(teacher.contentEquals(course.GetTeacherName())){
+                newList.add(course);
+            }
+        }
+        return newList;
     }
 
 }

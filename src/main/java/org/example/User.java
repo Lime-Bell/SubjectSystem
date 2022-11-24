@@ -21,6 +21,7 @@ public class User {
             return "Wrong";
         }
     }
+    // 回傳所有的密碼
     public static String ReturnPasswordList(int index){
         if(index < PasswordList.length){
             return PasswordList[index];

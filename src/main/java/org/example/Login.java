@@ -7,18 +7,15 @@ import java.awt.event.ActionListener;
 
 public class Login {
 
-    private JFrame frame;
-    private JPanel TPanel = new JPanel();
+    private final JFrame frame;
+    private final JPanel TPanel = new JPanel();
     public Login(){
         // 创建 JFrame 实例
-        frame = new JFrame("Login Example");
-//        Dimension screenSize =Toolkit.getDefaultToolkit().getScreenSize();
+        frame = new JFrame("Login");
         frame.setSize(350, 200);
         frame.setLocationRelativeTo(null);
-        // Setting the width and height of frame
-//        frame.setSize(350, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.getContentPane().setLayout(new GridLayout(3,1));
+
         frame.add(TPanel);
         PlaceComponents();
 
@@ -26,11 +23,8 @@ public class Login {
         frame.setVisible(true);
     }
     private void PlaceComponents(){
-//        TPanel.setLayout(null);
         // UserID
         JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-//        Dimension screenSize =Toolkit.getDefaultToolkit().getScreenSize();
-//        Dimension frameSize = frame.getSize();
         JLabel userLabel = new JLabel("UserID");
         JTextField userField = new JTextField(20);
         userPanel.add(userLabel);
@@ -39,21 +33,21 @@ public class Login {
 
         // Password
         JPanel pwdPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-//        pwdPanel.setSize(100,50);
         Label pwdLabel = new Label("Password");
         JPasswordField pwdField = new JPasswordField(20);
         pwdPanel.add(pwdLabel);
         pwdPanel.add(pwdField);
         TPanel.add(pwdPanel);
-//
+
         // Send / Reset Button
         JPanel buttonPanel = new JPanel();
         JButton send = new JButton("Send");
         JButton reset = new JButton("Reset");
         buttonPanel.add(send);
         buttonPanel.add(reset);
-        TPanel.add(buttonPanel, FlowLayout.CENTER);
+        TPanel.add(buttonPanel);
 
+        // 按鈕事件觸發
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,9 +56,12 @@ public class Login {
                 userid = userField.getText();
                 password = String.valueOf(pwdField.getPassword());
 
+                // 假設輸入的id, pwd 存在 UserDB
                 if(UserDB.isUser(userid, password)){
                     System.out.println("Login Success");
+                    // 關閉現在的 window
                     frame.dispose();
+                    // 開啟主頁 window
                     AllInterface.ShowHome();
                 }
                 else{
@@ -73,6 +70,7 @@ public class Login {
             }
         });
 
+        // 觸發reset事件，清除輸入格
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

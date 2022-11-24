@@ -3845,6 +3845,7 @@ public class Course {
     String str = "";
     public int courseLength = str.length();
 
+    // 將一堂課程的所有資訊變為字串型態
     public String ToCourseString(){
         str = "";
         str += StringAline(String.valueOf(courseID), CourseDB.maxIDLength);
