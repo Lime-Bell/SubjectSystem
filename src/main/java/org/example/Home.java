@@ -68,44 +68,73 @@ class MyPanel extends Panel {
         this.add(new Label(msg), new BorderLayout().CENTER);
     }
 }
-
-// 主頁面板
-class HomePanel extends Panel{
+class HomePanel extends ScrollPane{
     public HomePanel(JFrame frame){
-        this.setLayout(new BorderLayout());
-        JLabel id = new JLabel("ID");
-        JLabel name = new JLabel("      Name      ");
-        JLabel classes = new JLabel("         Class     ");
-        JLabel credit = new JLabel(" Credit ");
-        JLabel isRequires = new JLabel(" isRequired ");
-        JLabel department = new JLabel("   Department   ");
-        JLabel currentSeat = new JLabel("CurrentSeat ");
-        JLabel maxSeat = new JLabel("MaxSeat ");
-        JLabel teacher = new JLabel(" Teacher");
+//        JLabel id = new JLabel("ID");
+//        JLabel name = new JLabel("      Name      ");
+//        JLabel classes = new JLabel("         Class     ");
+//        JLabel credit = new JLabel(" Credit ");
+//        JLabel isRequires = new JLabel(" isRequired ");
+//        JLabel department = new JLabel("   Department   ");
+//        JLabel currentSeat = new JLabel("CurrentSeat ");
+//        JLabel maxSeat = new JLabel("MaxSeat ");
+//        JLabel teacher = new JLabel(" Teacher");
 
-        JPanel p1 = new JPanel();
-        p1.add(id);
-        p1.add(name);
-        p1.add(classes);
-        p1.add(credit);
-        p1.add(isRequires);
-        p1.add(department);
-        p1.add(currentSeat);
-        p1.add(maxSeat);
-        p1.add(teacher);
-        this.add(p1, BorderLayout.NORTH);
+//        JPanel p1 = new JPanel();
+//        p1.add(id);
+//        p1.add(name);
+//        p1.add(classes);
+//        p1.add(credit);
+//        p1.add(isRequires);
+//        p1.add(department);
+//        p1.add(currentSeat);
+//        p1.add(maxSeat);
+//        p1.add(teacher);
+//        this.add(p1, BorderLayout.NORTH);
 
-        // 列出所有的courseList
-        String s = "";
-        for(String course: CourseDB.ToList(CourseDB.courseList)){
-            s += course + "\n";
+        JPanel panel = new JPanel(new BorderLayout());
+        JLabel l = new JLabel("                   ID  CourseName    Class    Credit    isRequired   Department    " +
+                "CurrentSeat   MaxSeat      Teacher  ");
+        panel.add(l, BorderLayout.NORTH);
+        JPanel panel2 = new JPanel(new GridBagLayout());
+        int index = 0;
+        for(Course course: CourseDB.courseList){
+            JButton button = new JButton("加選");
+            JLabel label = new JLabel(course.ToCourseString());
+            GridBagConstraints c0 = new GridBagConstraints();
+            GridBagConstraints c1 = new GridBagConstraints();
+            c0.gridx = 0;
+            c0.gridy = index;
+            c0.gridwidth = 1;
+            c0.gridheight = 1;
+            c0.weightx = 0;
+            c0.weighty = 0;
+            c0.fill = GridBagConstraints.NONE;
+            c0.anchor = GridBagConstraints.WEST;
+
+            c1.gridx = 1;
+            c1.gridy = index;
+            c1.gridwidth = 20;
+            c1.gridheight = 1;
+            c1.weightx = 0;
+            c1.weighty = 0;
+            c1.fill = GridBagConstraints.HORIZONTAL;
+            c1.anchor = GridBagConstraints.WEST;
+            panel2.add(button, c0);
+            panel2.add(label, c1);
+            index ++;
+
         }
-        TextArea ta = new TextArea(s);
-        // 增加滾輪滑動
-        JScrollPane scrollPane = new JScrollPane(ta);
-        this.add(scrollPane, BorderLayout.CENTER);
+        panel.add(panel2, BorderLayout.CENTER);
+        this.add(panel);
+
+
+
+
+
     }
 }
+
 
 // 篩選面板
 class SelectPanel extends JPanel{
