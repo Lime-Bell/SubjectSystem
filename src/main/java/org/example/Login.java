@@ -10,7 +10,7 @@ public class Login {
     private final JFrame frame;
     private final JPanel TPanel = new JPanel();
     public Login(){
-        // 创建 JFrame 实例
+        // 創建 JFrame
         frame = new JFrame("Login");
         frame.setSize(350, 200);
         frame.setLocationRelativeTo(null);
@@ -19,21 +19,21 @@ public class Login {
         frame.add(TPanel);
         PlaceComponents();
 
-        // 设置界面可见
+        // 設定頁面為可見
         frame.setVisible(true);
     }
     private void PlaceComponents(){
         // UserID
-        JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel userLabel = new JLabel("UserID");
+        JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JLabel userLabel = new JLabel("   UserID   ");
         JTextField userField = new JTextField(20);
         userPanel.add(userLabel);
         userPanel.add(userField);
         TPanel.add(userPanel);
 
         // Password
-        JPanel pwdPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        Label pwdLabel = new Label("Password");
+        JPanel pwdPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JLabel pwdLabel = new JLabel("Password");
         JPasswordField pwdField = new JPasswordField(20);
         pwdPanel.add(pwdLabel);
         pwdPanel.add(pwdField);

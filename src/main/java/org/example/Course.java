@@ -2463,7 +2463,7 @@ public class Course {
             "資訊工程學系",
             "資訊工程學系"
     };
-    private static int[] CurrentSeat = {       // 已收授人數
+    private static int[] MaxSeat = {       // 已收授人數
             60,
             120,
             80,
@@ -2873,7 +2873,7 @@ public class Course {
             60,
             60
     };
-    private static int[] MaxSeat = {           // 人數上限
+    private static int[] CurrentSeat = {           // 人數上限
             58,
             111,
             79,

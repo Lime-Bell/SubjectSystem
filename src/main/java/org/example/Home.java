@@ -19,18 +19,18 @@ class Home extends JFrame implements ActionListener {
         // 初始化組件
         menuBar = new MenuBar();
         function = new Menu("Function");
-        all = new MenuItem("All Course");
+//        all = new MenuItem("All Course");
         select = new MenuItem("Select Course");
         myCourse = new MenuItem("My Course");
         contentPanel = new Panel();
 
         // 菜單項添加事件監聽器
-        all.addActionListener(this);
+//        all.addActionListener(this);
         select.addActionListener(this);
         myCourse.addActionListener(this);
 
         // 設置窗口的菜單欄，菜單和各個菜單項。
-        function.add(all);
+//        function.add(all);
         function.add(select);
         function.add(myCourse);
         menuBar.add(function);
@@ -42,7 +42,8 @@ class Home extends JFrame implements ActionListener {
 
         // 窗口的其他參數
         setTitle("Home");
-        setBounds(300, 50, 700, 500);
+        setSize(900, 450);
+//        setBounds(300, 50, 700, 500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -51,10 +52,10 @@ class Home extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if (source.equals(all)) {
-            changeContentPane(new HomePanel(this));
-        }
-        else if (source.equals(select)) {
+//        if (source.equals(all)) {
+//            changeContentPane(new HomePanel(this));
+//        }
+        if (source.equals(select)) {
             changeContentPane(new SelectPanel(this));
         }
         else if (source.equals(myCourse)) {
@@ -64,7 +65,6 @@ class Home extends JFrame implements ActionListener {
 
     // 切換內容面板
     public void changeContentPane(Container contentPane) {
-
         this.setContentPane(contentPane);
         this.revalidate();
         this.repaint();
@@ -78,16 +78,68 @@ class MyPanel extends JPanel {
 //        List<User> userList = new ArrayList<>(UserDB.UserList);
         UserDB user = new UserDB();
 
-        JPanel userData = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        CoursePanel panel = new CoursePanel();
+
+        // 設定功課表參數
+        panel.setPanelElements();
+
+        // 顯示課程標題
+        panel.addHeader();
+
+        // 獲取用戶功課表
+        List<Course> courseList = user.getCourse();
+
+        System.out.println(courseList);
+
+        int index = 0;
+
+        if (courseList != null) {
+            // 根據用戶課程數建立退選按鈕
+
+            JButton button[] = new JButton[courseList.size()];
+
+            for (Course course : courseList) {
+                button[index] = new JButton("退選");
+                button[index].setForeground(Color.RED);
+
+                final int number = index;
+                button[index].addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (button[number].getText().equals("加選")) {
+                            button[number].setText("退選");
+                            button[number].setForeground(Color.RED);
+                            user.addCourse(course, course.GetCredit());
+                            System.out.println("加選成功！");
+                        }
+
+                        else if (button[number].getText().equals("退選")) {
+                            button[number].setText("加選");
+                            button[number].setForeground(Color.BLACK);
+                            user.delCourse(course, course.GetCredit());
+                            System.out.println("退選成功！");
+                        }
+                    }
+                });
+
+                panel.addCourseIntoTable(course, index, button[index]);
+
+                index++;
+            }
 
 
-        JLabel userName = new JLabel("用戶名稱：" + user.getNowUser());
-        JLabel userCredit = new JLabel(" 目前學分：" + user.getNowCredit());
+        }
 
-        userData.add(userName);
-        userData.add(userCredit);
+        panel.addResetButton(frame, index);
 
-        this.add(userData);
+        this.add(panel.getCoursePanel());
+
+//        System.out.println(CourseDB.courseList.size());
+
+//        JButton button[] = new JButton[courseList.size()];
+
+        // 顯示用戶名稱 & 學分
+
 //        for (User user: UserDB.UserList) {
 //            user.GetUserID()
 //        }
@@ -99,6 +151,7 @@ class MyPanel extends JPanel {
 }
 class HomePanel extends ScrollPane{
     public HomePanel(JFrame frame) {
+
 //        JLabel id = new JLabel("ID");
 //        JLabel name = new JLabel("      Name      ");
 //        JLabel classes = new JLabel("         Class     ");
@@ -125,6 +178,7 @@ class HomePanel extends ScrollPane{
 //        JLabel l = new JLabel("                   ID  CourseName    Class    Credit    isRequired   Department    " +
 //                "CurrentSeat   MaxSeat      Teacher  ");
 //        panel.add(l, BorderLayout.NORTH);
+
         JPanel panel = new JPanel(new GridBagLayout());
 
         GridBagConstraints addButton = new GridBagConstraints();
@@ -151,7 +205,7 @@ class HomePanel extends ScrollPane{
                 currentSeat.gridwidth = maxSeat.gridwidth = teacher.gridwidth = 1;
 
         addButton.ipadx = id.ipadx = classes.ipadx = credit.ipadx = isRequired.ipadx =
-                department.ipadx = currentSeat.ipadx = maxSeat.ipadx = teacher.ipadx = 1;
+                department.ipadx = currentSeat.ipadx = maxSeat.ipadx = teacher.ipadx = 15;
 
         addButton.gridheight = id.gridheight = classes.gridheight = credit.gridheight = isRequired.gridheight =
                 department.gridheight = currentSeat.gridheight= maxSeat.gridheight = teacher.gridheight = 1;
@@ -162,8 +216,8 @@ class HomePanel extends ScrollPane{
         addButton.weighty = id.weighty = classes.weighty = credit.weighty = isRequired.weighty = department.weighty =
                 currentSeat.weighty = maxSeat.weighty = teacher.weighty = 1;
 
-        addButton.fill = id.fill = classes.fill = credit.fill = isRequired.fill = department.fill =
-                currentSeat.fill = maxSeat.fill = teacher.fill = GridBagConstraints.HORIZONTAL;
+//        addButton.fill = id.fill = classes.fill = credit.fill = isRequired.fill = department.fill =
+//                currentSeat.fill = maxSeat.fill = teacher.fill = GridBagConstraints.BOTH;
 
         addButton.anchor = id.anchor = classes.anchor = credit.anchor = isRequired.anchor = department.anchor =
                 currentSeat.anchor = maxSeat.anchor = teacher.anchor = GridBagConstraints.CENTER;
@@ -276,29 +330,42 @@ class HomePanel extends ScrollPane{
 // 篩選面板
 class SelectPanel extends JPanel{
     public SelectPanel(JFrame frame){
+        UserDB user = new UserDB();
 
+        // 顯示用戶名稱及學分
+        JPanel userData = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel userName = new JLabel("                              用戶名稱：" + user.getNowUser());
+        JLabel userCredit = new JLabel("          目前學分：" + user.getNowCredit()+ "                              ");
+
+        userData.add(userName);
+        userData.add(userCredit);
+
+        this.add(userData);
+
+        //
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel p1 = new JPanel(new FlowLayout(FlowLayout.TRAILING));
         JPanel p2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         //courseID: courseIDPanel
         JPanel courseIDPanel = new JPanel();
-        JLabel courseIDLabel = new JLabel("courseID");
+        JLabel courseIDLabel = new JLabel(" courseID ");
         JTextField courseIDField = new JTextField(5);
         courseIDPanel.add(courseIDLabel);
         courseIDPanel.add(courseIDField);
 
         //courseName: courseNamePanel
         JPanel courseNamePanel = new JPanel();
-        JLabel courseNameLabel = new JLabel("courseName");
+        JLabel courseNameLabel = new JLabel(" courseName ");
         JTextField courseNameField = new JTextField(15);
         courseNamePanel.add(courseNameLabel);
         courseNamePanel.add(courseNameField);
 
         //Class: classPanel
         JPanel classPanel = new JPanel();
-        JLabel classLabel = new JLabel("Class");
+        JLabel classLabel = new JLabel(" Class ");
         // 下拉選單
         JComboBox classCombox = new JComboBox();
         List<String> classList = CourseDB.ReturnAllClass();
@@ -311,7 +378,7 @@ class SelectPanel extends JPanel{
 
         //Department: departmentPanel
         JPanel departmentPanel = new JPanel();
-        JLabel departmentLabel = new JLabel("Department");
+        JLabel departmentLabel = new JLabel(" Department ");
         JComboBox departmentCombox = new JComboBox();
         List<String> departmentList = CourseDB.ReturnAllDepartment();
         departmentCombox.addItem("NULL");
@@ -323,7 +390,7 @@ class SelectPanel extends JPanel{
 
         //Teacher: teacherPanel
         JPanel teacherPanel = new JPanel();
-        JLabel teacherLabel = new JLabel("Teacher");
+        JLabel teacherLabel = new JLabel(" Teacher ");
         JTextField teacherField = new JTextField(15);
         teacherPanel.add(teacherLabel);
         teacherPanel.add(teacherField);
@@ -355,6 +422,7 @@ class SelectPanel extends JPanel{
 
         this.add(p2);
         this.add(buttonPanel);
+
 
         // 觸發搜尋事件
         search.addActionListener(new ActionListener() {
@@ -417,84 +485,31 @@ class SelectPanel extends JPanel{
 class AfterSelectPanel extends ScrollPane{
     public AfterSelectPanel(JFrame frame, List<Course> courseList) {
 //        this.setLayout(new GridBagLayout());
+
         UserDB user = new UserDB();
 
-        JPanel panel = new JPanel(new GridBagLayout());
+        CoursePanel panel = new CoursePanel();
 
-        GridBagConstraints addButton = new GridBagConstraints();
-        GridBagConstraints id = new GridBagConstraints();
-        GridBagConstraints classes = new GridBagConstraints();
-        GridBagConstraints credit = new GridBagConstraints();
-        GridBagConstraints isRequired = new GridBagConstraints();
-        GridBagConstraints department = new GridBagConstraints();
-        GridBagConstraints currentSeat = new GridBagConstraints();
-        GridBagConstraints maxSeat = new GridBagConstraints();
-        GridBagConstraints teacher = new GridBagConstraints();
-        GridBagConstraints resetButton = new GridBagConstraints();
+        panel.setPanelElements();
 
-        addButton.gridx = 0;
-        id.gridx = 2;
-        classes.gridx = 4;
-        credit.gridx = 6;
-        isRequired.gridx = 8;
-        department.gridx = 10;
-        currentSeat.gridx = 12;
-        maxSeat.gridx = 14;
-        teacher.gridx = 16;
+        panel.addHeader();
 
-        addButton.gridwidth = id.gridwidth = classes.gridwidth = credit.gridwidth = isRequired.gridwidth = department.gridwidth =
-                currentSeat.gridwidth = maxSeat.gridwidth = teacher.gridwidth = 1;
+        panel.setTotalPage(courseList.size() / 10 + 1);
 
-        addButton.ipadx = id.ipadx = classes.ipadx = credit.ipadx = isRequired.ipadx =
-                department.ipadx = currentSeat.ipadx = maxSeat.ipadx = teacher.ipadx = 1;
-
-        addButton.gridheight = id.gridheight = classes.gridheight = credit.gridheight = isRequired.gridheight =
-                department.gridheight = currentSeat.gridheight = maxSeat.gridheight = teacher.gridheight = 1;
-
-        addButton.weightx = id.weightx = classes.weightx = credit.weightx = isRequired.weightx =
-                department.weightx = currentSeat.weightx = maxSeat.weightx = teacher.weightx = 1;
-
-        addButton.weighty = id.weighty = classes.weighty = credit.weighty = isRequired.weighty = department.weighty =
-                currentSeat.weighty = maxSeat.weighty = teacher.weighty = 1;
-
-        addButton.fill = id.fill = classes.fill = credit.fill = isRequired.fill = department.fill =
-                currentSeat.fill = maxSeat.fill = teacher.fill = GridBagConstraints.CENTER;
-
-        addButton.anchor = id.anchor = classes.anchor = credit.anchor = isRequired.anchor = department.anchor =
-                currentSeat.anchor = maxSeat.anchor = teacher.anchor = GridBagConstraints.CENTER;
-
-        addButton.gridy = id.gridy = classes.gridy = credit.gridy = isRequired.gridy = department.gridy =
-                currentSeat.gridy = maxSeat.gridy = teacher.gridy = 0;
-
-        JLabel idHeader = new JLabel("ID");
-        JLabel classesHeader = new JLabel("CourseName");
-        JLabel creditHeader = new JLabel("Credit");
-        JLabel isRequiredHeader = new JLabel("isRequired");
-        JLabel departmentHeader = new JLabel("Department");
-        JLabel currentSeatHeader = new JLabel("CurrentSeat");
-        JLabel maxSeatHeader = new JLabel("MaxSeat");
-        JLabel teacherHeader = new JLabel("Teacher");
-
-        panel.add(idHeader, id);
-        panel.add(classesHeader, classes);
-        panel.add(creditHeader, credit);
-        panel.add(isRequiredHeader, isRequired);
-        panel.add(departmentHeader, department);
-        panel.add(currentSeatHeader, currentSeat);
-        panel.add(maxSeatHeader, maxSeat);
-        panel.add(teacherHeader, teacher);
+        panel.setCourse(courseList);
 
         int index = 0;
-
 //        System.out.println(CourseDB.courseList.size());
 
         JButton button[] = new JButton[courseList.size()];
 
         for (Course course : courseList) {
-            if (user.getCourse() == null || !user.getCourse().contains(course.GetCourseID())) {
+//            user.getCourse().contains()
+            if (user.getCourse() == null || !user.getCourse().contains(course)) {
                 button[index]= new JButton("加選");
                 button[index].setForeground(Color.BLACK);
-            } else if (user.getCourse().contains(course.GetCourseID())) {
+            }
+            else if (user.getCourse().contains(course)) {
                 button[index]= new JButton("退選");
                 button[index].setForeground(Color.RED);
             }
@@ -503,65 +518,46 @@ class AfterSelectPanel extends ScrollPane{
             button[index].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed (ActionEvent e){
-//                    List<Course> copyList = new ArrayList<>(courseList);
 
-                    if (button[number].getText().equals("加選")) {
+                    if (button[number].getText().equals("加選") && (course.GetCurrentSeat() >= course.GetMaxSeat())) {
+                        System.out.println("無法加選！課程人數已達上限！");
+                    }
+                    else if (button[number].getText().equals("加選") && (course.GetCredit() + user.getNowCredit() > 25)) {
+                        System.out.println("無法加選！修習學分已達上限！");
+                    }
+                    else if (button[number].getText().equals("加選") && (course.GetCredit() + user.getNowCredit() <= 25)) {
                         button[number].setText("退選");
                         button[number].setForeground(Color.RED);
-                        user.addCourse(course.GetCourseID(), course.GetCredit());
-                        System.out.println("加選成功!");
+                        user.addCourse(course, course.GetCredit());
+                        System.out.println("加選成功！");
                     }
                     else if (button[number].getText().equals("退選")) {
                         button[number].setText("加選");
                         button[number].setForeground(Color.BLACK);
-                        user.delCourse(course.GetCourseID(), course.GetCredit());
-                        System.out.println("退選成功!");
+                        user.delCourse(course, course.GetCredit());
+                        System.out.println("退選成功！");
                     }
                 }
             });
 
-            JLabel idText = new JLabel(Integer.toString(course.GetCourseID()));
-            JLabel classesText = new JLabel(course.GetCourseClass());
-            JLabel creditText = new JLabel(Integer.toString(course.GetCredit()));
-            JLabel isRequiredText = new JLabel(Boolean.toString(course.GetIsRequired()));
-            JLabel departmentText = new JLabel(course.GetDepartment());
-            JLabel currentSeatText = new JLabel(Integer.toString(course.GetCurrentSeat()));
-            JLabel maxSeatText = new JLabel(Integer.toString(course.GetMaxSeat()));
-            JLabel teacherText = new JLabel(course.GetTeacherName());
+            panel.addCourseIntoTable(course, index, button[index]);
 
-            addButton.gridy = id.gridy = classes.gridy = credit.gridy = isRequired.gridy = department.gridy =
-                    currentSeat.gridy = maxSeat.gridy = teacher.gridy = index + 1;
-
-            panel.add(button[index], addButton);
-            panel.add(idText, id);
-            panel.add(classesText, classes);
-            panel.add(creditText, credit);
-            panel.add(isRequiredText, isRequired);
-            panel.add(departmentText, department);
-            panel.add(currentSeatText, currentSeat);
-            panel.add(maxSeatText, maxSeat);
-            panel.add(teacherText, teacher);
-
-            if (index == 30) {
-                break;
-            }
+//            if (index == 30) {
+//                break;
+//            }
 
             index++;
 
+            // 強制只能顯示 20筆
+            if ((index % 20 == 0) && index != 0) {
+//                panel.panelLayout(frame);
+//                index -= 10;
 
-
+                break;
+            }
         }
 
-//        this.setLayout(new BorderLayout());
-//        JLabel id = new JLabel("ID");
-//        JLabel name = new JLabel("      Name      ");
-//        JLabel classes = new JLabel("         Class     ");
-//        JLabel credit = new JLabel(" Credit ");
-//        JLabel isRequires = new JLabel(" isRequired ");
-//        JLabel department = new JLabel("   Department   ");
-//        JLabel currentSeat = new JLabel("CurrentSeat ");
-//        JLabel maxSeat = new JLabel("MaxSeat ");
-//        JLabel teacher = new JLabel(" Teacher");
+        panel.addResetButton(frame, index);
 
 //        JPanel p1 = new JPanel();
 //        p1.add(id);
@@ -587,24 +583,237 @@ class AfterSelectPanel extends ScrollPane{
 //
 
         //回上頁按鈕
-        JButton reset = new JButton("Reset");
+//        JButton reset = new JButton("Reset");
+//
+//        resetButton.gridx = 8;
+//        resetButton.gridy = index + 2;
+//        resetButton.gridwidth = 2;
+//        resetButton.gridheight = 1;
+//        resetButton.ipadx = 2;
+//        resetButton.weightx = resetButton.weighty = 1;
+//        resetButton.fill = GridBagConstraints.CENTER;
+//        resetButton.anchor = GridBagConstraints.CENTER;
 
-        resetButton.gridx = 8;
-        resetButton.gridy = index + 2;
-        resetButton.gridwidth = 2;
-        resetButton.gridheight = 1;
-        resetButton.ipadx = 2;
-        resetButton.weightx = resetButton.weighty = 1;
-        resetButton.fill = GridBagConstraints.CENTER;
-        resetButton.anchor = GridBagConstraints.CENTER;
 
-//        reset.setLayout(new FlowLayout(FlowLayout.CENTER));
+//        panel.add(reset, resetButton);
 
-        panel.add(reset, resetButton);
+        this.add(panel.getCoursePanel());
 
-        this.add(panel);
 
         // 回到篩選面板
+//        reset.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                frame.setContentPane(new SelectPanel(frame));
+//                frame.revalidate();
+//            }
+//        });
+
+    }
+
+}
+
+class CoursePanel extends ScrollPane {
+
+    List<Course> course;
+    int pageNumber = 1;
+
+    int totalPage;
+    JPanel panel;
+
+    GridBagConstraints addButton;
+    GridBagConstraints id;
+    GridBagConstraints courseName;
+    GridBagConstraints classes;
+    GridBagConstraints credit;
+    GridBagConstraints isRequired;
+    GridBagConstraints department;
+    GridBagConstraints currentSeat;
+    GridBagConstraints maxSeat;
+    GridBagConstraints teacher;
+    GridBagConstraints resetButton;
+
+    public CoursePanel() {
+        this.panel = new JPanel(new GridBagLayout());
+
+        this.addButton = new GridBagConstraints();
+        this.courseName = new GridBagConstraints();
+        this.id = new GridBagConstraints();
+        this.classes = new GridBagConstraints();
+        this.credit = new GridBagConstraints();
+        this.isRequired = new GridBagConstraints();
+        this.department = new GridBagConstraints();
+        this.currentSeat = new GridBagConstraints();
+        this.maxSeat = new GridBagConstraints();
+        this.teacher = new GridBagConstraints();
+        this.resetButton = new GridBagConstraints();
+
+
+    }
+
+    public void setPanelElements() {
+        this.addButton.gridx = 0;
+        this.courseName.gridx = 5;
+        this.id.gridx = 20;
+        this.classes.gridx = 28;
+        this.credit.gridx = 42;
+        this.isRequired.gridx = 50;
+        this.department.gridx = 65;
+        this.currentSeat.gridx = 80;
+        this.maxSeat.gridx = 90;
+        this.teacher.gridx = 100;
+
+        this.addButton.gridwidth = 1;
+        this.courseName.gridwidth = 15;
+        this.id.gridwidth = 4;
+        this.classes.gridwidth = 10;
+        this.credit.gridwidth = 4;
+        this.isRequired.gridwidth = 10;
+        this.department.gridwidth = 10;
+        this.currentSeat.gridwidth = 5;
+        this.maxSeat.gridwidth = 5;
+        this.teacher.gridwidth = 10;
+
+        addButton.ipadx = courseName.ipadx = id.ipadx = classes.ipadx = credit.ipadx = isRequired.ipadx =
+                department.ipadx = currentSeat.ipadx = maxSeat.ipadx = teacher.ipadx = 15;
+
+        addButton.gridheight = courseName.gridheight = id.gridheight = classes.gridheight = credit.gridheight = isRequired.gridheight =
+                department.gridheight = currentSeat.gridheight = maxSeat.gridheight = teacher.gridheight = 1;
+
+        addButton.weightx = courseName.weightx = id.weightx = classes.weightx = credit.weightx = isRequired.weightx =
+                department.weightx = currentSeat.weightx = maxSeat.weightx = teacher.weightx = 0;
+
+        addButton.weighty = courseName.weighty = id.weighty = classes.weighty = credit.weighty = isRequired.weighty = department.weighty =
+                currentSeat.weighty = maxSeat.weighty = teacher.weighty = 0;
+
+        addButton.anchor = courseName.anchor = id.anchor = classes.anchor = credit.anchor = isRequired.anchor = department.anchor =
+                currentSeat.anchor = maxSeat.anchor = teacher.anchor = GridBagConstraints.CENTER;
+
+        addButton.gridy = courseName.gridy = id.gridy = classes.gridy = credit.gridy = isRequired.gridy = department.gridy =
+                currentSeat.gridy = maxSeat.gridy = teacher.gridy = 0;
+    }
+
+    public void addHeader() {
+        JLabel idHeader = new JLabel("ID");
+        JLabel courseNameHeader = new JLabel("CourseName");
+        JLabel classesHeader = new JLabel("Class");
+        JLabel creditHeader = new JLabel("Credit");
+        JLabel isRequiredHeader = new JLabel("isRequired");
+        JLabel departmentHeader = new JLabel("Department");
+        JLabel currentSeatHeader = new JLabel("CurrentSeat");
+        JLabel maxSeatHeader = new JLabel("MaxSeat");
+        JLabel teacherHeader = new JLabel("Teacher");
+
+        this.panel.add(idHeader, id);
+        this.panel.add(courseNameHeader, courseName);
+        this.panel.add(classesHeader, classes);
+        this.panel.add(creditHeader, credit);
+        this.panel.add(isRequiredHeader, isRequired);
+        this.panel.add(departmentHeader, department);
+        this.panel.add(currentSeatHeader, currentSeat);
+        this.panel.add(maxSeatHeader, maxSeat);
+        this.panel.add(teacherHeader, teacher);
+    }
+
+    public void addCourseIntoTable(Course course, int index, JButton button) {
+
+        JLabel idText = new JLabel(Integer.toString(course.GetCourseID()));
+        JLabel courseNameText = new JLabel(course.GetCourseName());
+        JLabel classesText = new JLabel(course.GetCourseClass());
+        JLabel creditText = new JLabel(Integer.toString(course.GetCredit()));
+        JLabel isRequiredText = new JLabel(Boolean.toString(course.GetIsRequired()));
+        JLabel departmentText = new JLabel(course.GetDepartment());
+        JLabel currentSeatText = new JLabel(Integer.toString(course.GetCurrentSeat()));
+        JLabel maxSeatText = new JLabel(Integer.toString(course.GetMaxSeat()));
+        JLabel teacherText = new JLabel(course.GetTeacherName());
+
+        this.addButton.gridy = this.courseName.gridy = this.id.gridy = this.classes.gridy = this.credit.gridy = this.isRequired.gridy = this.department.gridy =
+                this.currentSeat.gridy = this.maxSeat.gridy = this.teacher.gridy = index + 1;
+
+        this.panel.add(button, addButton);
+        this.panel.add(courseNameText, courseName);
+        this.panel.add(idText, id);
+        this.panel.add(classesText, classes);
+        this.panel.add(creditText, credit);
+        this.panel.add(isRequiredText, isRequired);
+        this.panel.add(departmentText, department);
+        this.panel.add(currentSeatText, currentSeat);
+        this.panel.add(maxSeatText, maxSeat);
+        this.panel.add(teacherText, teacher);
+
+    }
+
+//    public void panelLayout(JFrame frame) {
+//        if (this.totalPage > 1) {
+//            GridBagConstraints previousPageButton = new GridBagConstraints();
+//            GridBagConstraints nextPageButton = new GridBagConstraints();
+//            GridBagConstraints pages = new GridBagConstraints();
+//
+//            JButton previousPage = new JButton("上一頁");
+//            JButton nextPage = new JButton("下一頁");
+//            JLabel pagesText = new JLabel(Integer.toString(pageNumber) + " / " + Integer.toString(totalPage) + " 頁");
+//
+//            previousPageButton.gridx = 42;
+//            pages.gridx = 46;
+//            nextPageButton.gridx = 50;
+//
+//            previousPageButton.gridy = pages.gridy = nextPageButton.gridy = 11;
+//
+//            previousPageButton.ipadx = nextPageButton.ipadx = 15;
+//
+//            this.panel.add(previousPage, previousPageButton);
+//            this.panel.add(pagesText, pages);
+//            this.panel.add(nextPage, nextPageButton);
+//
+//            if (pageNumber > 1) {
+//                previousPage.addActionListener(new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        pageNumber -= 1;
+//
+//                        for (int i = pageNumber * 10 - 10; i < pageNumber * 10 - 1; i++) {
+//
+//                        }
+//                        panel.revalidate();
+//
+//
+//                    }
+//                });
+//            }
+//            nextPage.addActionListener(new ActionListener() {
+//                 @Override
+//                 public void actionPerformed(ActionEvent e) {
+//                     pageNumber += 1;
+//                     System.out.println(pageNumber);
+//
+//                     panel.revalidate();
+//
+//                 }
+//            });
+//
+//        }
+//        else if (page == 1) {
+//
+//        }
+
+//    }
+
+    public void addResetButton(JFrame frame, int index) {
+        JButton reset = new JButton("Reset");
+
+        this.resetButton.gridx = 42;
+        this.resetButton.gridy = index + 2;
+        this.resetButton.ipadx = 15;
+
+        this.resetButton.gridwidth = 1;
+        this.resetButton.gridheight = 1;
+        this.resetButton.weightx = resetButton.weighty = 0;
+//        this.resetButton.fill = GridBagConstraints.BOTH;
+        this.resetButton.anchor = GridBagConstraints.CENTER;
+
+        this.panel.add(reset, resetButton);
+        //        回到篩選面板
+
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -612,8 +821,29 @@ class AfterSelectPanel extends ScrollPane{
                 frame.revalidate();
             }
         });
-
-
     }
+
+    public void addNoCourseMessage() {
+        GridBagConstraints noCourse = new GridBagConstraints();
+
+        JLabel noCourseText= new JLabel("目前沒有課程！");
+
+        this.panel.add(noCourseText, noCourse);
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+
+    public JPanel getCoursePanel() {
+        return this.panel;
+    }
+
+    public void setCourse(List<Course> courseList) {
+        this.course = courseList;
+    }
+
 }
+
 

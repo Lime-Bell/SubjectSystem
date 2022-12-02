@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.*;
 import java.util.*;
 
 public class UserDB {
@@ -8,7 +9,7 @@ public class UserDB {
     private static String nowUser = "";
 
     private static int nowCredit = 0;
-    private static Map<String, List<Integer>> course = new HashMap<String, List<Integer>>();
+    private static Map<String, List<Course>> course = new HashMap<String, List<Course>>();
 
     // UserDB 初始化
     public static void Initialized(){
@@ -28,23 +29,25 @@ public class UserDB {
         return false;
     }
 
-    public void addCourse(int courseID, int credit) {
-        if (!course.containsKey(this.nowUser)) {
-            course.put(this.nowUser, new ArrayList<Integer>());
+    public void addCourse(Course course, int credit) {
+        if (!this.course.containsKey(this.nowUser)) {
+            this.course.put(this.nowUser, new ArrayList<Course>());
         }
-        this.course.get(this.nowUser).add(courseID);
+        this.course.get(this.nowUser).add(course);
         this.nowCredit += credit;
     }
 
-    public void delCourse(int courseID, int credit) {
-        if (course.containsKey(this.nowUser)) {
-            this.course.get(this.nowUser).remove(courseID);
+    public void delCourse(Course course, int credit) {
+        if (this.course.containsKey(this.nowUser)) {
+            this.course.get(this.nowUser).remove(course);
         }
         this.nowCredit -= credit;
 
     }
 
-    public List<Integer> getCourse() {
+    public List<Course> getCourse() {
+
+//        System.out.println(this.course.get(getNowUser()));
 
         return this.course.get(this.nowUser);
     }
@@ -60,5 +63,7 @@ public class UserDB {
     public int getNowCredit() {
         return nowCredit;
     }
+
+
 
 }
