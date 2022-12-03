@@ -89,7 +89,7 @@ class MyPanel extends JPanel {
         // 獲取用戶功課表
         List<Course> courseList = user.getCourse();
 
-        System.out.println(courseList);
+//        System.out.println(courseList);
 
         int index = 0;
 
@@ -149,182 +149,182 @@ class MyPanel extends JPanel {
 //        this.add(new Label(frame), new BorderLayout().CENTER);
     }
 }
-class HomePanel extends ScrollPane{
-    public HomePanel(JFrame frame) {
-
-//        JLabel id = new JLabel("ID");
-//        JLabel name = new JLabel("      Name      ");
-//        JLabel classes = new JLabel("         Class     ");
-//        JLabel credit = new JLabel(" Credit ");
-//        JLabel isRequires = new JLabel(" isRequired ");
-//        JLabel department = new JLabel("   Department   ");
-//        JLabel currentSeat = new JLabel("CurrentSeat ");
-//        JLabel maxSeat = new JLabel("MaxSeat ");
-//        JLabel teacher = new JLabel(" Teacher");
-
-//        JPanel p1 = new JPanel();
-//        p1.add(id);
-//        p1.add(name);
-//        p1.add(classes);
-//        p1.add(credit);
-//        p1.add(isRequires);
-//        p1.add(department);
-//        p1.add(currentSeat);
-//        p1.add(maxSeat);
-//        p1.add(teacher);
-//        this.add(p1, BorderLayout.NORTH);
-
-//        JPanel panel = new JPanel(new BorderLayout());
-//        JLabel l = new JLabel("                   ID  CourseName    Class    Credit    isRequired   Department    " +
-//                "CurrentSeat   MaxSeat      Teacher  ");
-//        panel.add(l, BorderLayout.NORTH);
-
-        JPanel panel = new JPanel(new GridBagLayout());
-
-        GridBagConstraints addButton = new GridBagConstraints();
-        GridBagConstraints id = new GridBagConstraints();
-        GridBagConstraints classes = new GridBagConstraints();
-        GridBagConstraints credit = new GridBagConstraints();
-        GridBagConstraints isRequired = new GridBagConstraints();
-        GridBagConstraints department = new GridBagConstraints();
-        GridBagConstraints currentSeat = new GridBagConstraints();
-        GridBagConstraints maxSeat = new GridBagConstraints();
-        GridBagConstraints teacher = new GridBagConstraints();
-
-        addButton.gridx = 0;
-        id.gridx = 1;
-        classes.gridx = 2;
-        credit.gridx = 3;
-        isRequired.gridx = 4;
-        department.gridx = 5;
-        currentSeat.gridx = 6;
-        maxSeat.gridx = 7;
-        teacher.gridx = 8;
-
-        addButton.gridwidth = id.gridwidth = classes.gridwidth = credit.gridwidth = isRequired.gridwidth = department.gridwidth =
-                currentSeat.gridwidth = maxSeat.gridwidth = teacher.gridwidth = 1;
-
-        addButton.ipadx = id.ipadx = classes.ipadx = credit.ipadx = isRequired.ipadx =
-                department.ipadx = currentSeat.ipadx = maxSeat.ipadx = teacher.ipadx = 15;
-
-        addButton.gridheight = id.gridheight = classes.gridheight = credit.gridheight = isRequired.gridheight =
-                department.gridheight = currentSeat.gridheight= maxSeat.gridheight = teacher.gridheight = 1;
-
-        addButton.weightx = id.weightx = classes.weightx = credit.weightx = isRequired.weightx =
-                department.weightx = currentSeat.weightx = maxSeat.weightx = teacher.weightx = 1;
-
-        addButton.weighty = id.weighty = classes.weighty = credit.weighty = isRequired.weighty = department.weighty =
-                currentSeat.weighty = maxSeat.weighty = teacher.weighty = 1;
-
-//        addButton.fill = id.fill = classes.fill = credit.fill = isRequired.fill = department.fill =
-//                currentSeat.fill = maxSeat.fill = teacher.fill = GridBagConstraints.BOTH;
-
-        addButton.anchor = id.anchor = classes.anchor = credit.anchor = isRequired.anchor = department.anchor =
-                currentSeat.anchor = maxSeat.anchor = teacher.anchor = GridBagConstraints.CENTER;
-
-        addButton.gridy = id.gridy = classes.gridy = credit.gridy = isRequired.gridy = department.gridy =
-                currentSeat.gridy = maxSeat.gridy = teacher.gridy = 0;
-
-        JLabel idHeader = new JLabel("ID");
-        JLabel classesHeader = new JLabel("CourseName");
-        JLabel creditHeader = new JLabel("Credit");
-        JLabel isRequiredHeader = new JLabel("isRequired");
-        JLabel departmentHeader = new JLabel("Department");
-        JLabel currentSeatHeader = new JLabel("CurrentSeat");
-        JLabel maxSeatHeader = new JLabel("MaxSeat");
-        JLabel teacherHeader = new JLabel("Teacher");
-
-        panel.add(idHeader, id);
-        panel.add(classesHeader, classes);
-        panel.add(creditHeader, credit);
-        panel.add(isRequiredHeader, isRequired);
-        panel.add(departmentHeader, department);
-        panel.add(currentSeatHeader, currentSeat);
-        panel.add(maxSeatHeader, maxSeat);
-        panel.add(teacherHeader, teacher);
-
-        int index = 1;
-
-
-//        System.out.println(CourseDB.courseList.size());
-        for(Course course: CourseDB.courseList) {
-
-            JButton button = new JButton("加選");
-//            JLabel label = new JLabel(course.ToCourseString());
-
-            JLabel idText = new JLabel(Integer.toString(course.GetCourseID()));
-            JLabel classesText = new JLabel(course.GetCourseClass());
-            JLabel creditText = new JLabel(Integer.toString(course.GetCredit()));
-            JLabel isRequiredText = new JLabel(Boolean.toString(course.GetIsRequired()));
-            JLabel departmentText = new JLabel(course.GetDepartment());
-            JLabel currentSeatText = new JLabel(Integer.toString(course.GetCurrentSeat()));
-            JLabel maxSeatText = new JLabel(Integer.toString(course.GetMaxSeat()));
-            JLabel teacherText = new JLabel(course.GetTeacherName());
-
-            addButton.gridy = id.gridy = classes.gridy = credit.gridy = isRequired.gridy = department.gridy =
-                    currentSeat.gridy = maxSeat.gridy = teacher.gridy = index;
-
-            panel.add(button, addButton);
-            panel.add(idText, id);
-            panel.add(classesText, classes);
-            panel.add(creditText, credit);
-            panel.add(isRequiredText, isRequired);
-            panel.add(departmentText, department);
-            panel.add(currentSeatText, currentSeat);
-            panel.add(maxSeatText, maxSeat);
-            panel.add(teacherText, teacher);
-
-//            addButton.gridwidth = 1;
-//            classes.gridwidth = 4;
-//            credit.gridwidth = 2;
-//            isRequired.gridwidth = 2;
-//            department.gridwidth = 6;
-//            currentSeat.gridwidth = 2;
-//            maxSeat.gridwidth = 2;
-//            teacher.gridwidth = 3 ;
-
-//            GridBagConstraints c0 = new GridBagConstraints();
-//            GridBagConstraints c1 = new GridBagConstraints();
-
-//            GridBagConstraints typeSettins = new GridBagConstraints();
-//            c0.gridx = 0;
-//            c0.gridy = index;
-//            c0.gridwidth = 1;
-//            c0.gridheight = 1;
-//            c0.weightx = 0;
-//            c0.weighty = 0;
-//            c0.fill = GridBagConstraints.NONE;
-//            c0.anchor = GridBagConstraints.WEST;
-
-//            for (int i = 0; i < CourseDB.courseList.size())
-//            c1.gridx = 1;
-//            c1.gridy = index;
-//            c1.gridwidth = 20;
-//            c1.gridheight = 1;
-//            c1.weightx = 0;
-//            c1.weighty = 0;
-//            c1.fill = GridBagConstraints.HORIZONTAL;
-//            c1.anchor = GridBagConstraints.WEST;
-
-//            panel2.add(button, c0);
-//            panel2.add(label, c1);
-
-            if (index == 40) {
-                break;
-            }
-
-            index ++;
-
-        }
-//        panel.add(panel2, BorderLayout.CENTER);
-        this.add(panel);
-
-
-
-
-
-    }
-}
+//class HomePanel extends ScrollPane{
+//    public HomePanel(JFrame frame) {
+//
+////        JLabel id = new JLabel("ID");
+////        JLabel name = new JLabel("      Name      ");
+////        JLabel classes = new JLabel("         Class     ");
+////        JLabel credit = new JLabel(" Credit ");
+////        JLabel isRequires = new JLabel(" isRequired ");
+////        JLabel department = new JLabel("   Department   ");
+////        JLabel currentSeat = new JLabel("CurrentSeat ");
+////        JLabel maxSeat = new JLabel("MaxSeat ");
+////        JLabel teacher = new JLabel(" Teacher");
+//
+////        JPanel p1 = new JPanel();
+////        p1.add(id);
+////        p1.add(name);
+////        p1.add(classes);
+////        p1.add(credit);
+////        p1.add(isRequires);
+////        p1.add(department);
+////        p1.add(currentSeat);
+////        p1.add(maxSeat);
+////        p1.add(teacher);
+////        this.add(p1, BorderLayout.NORTH);
+//
+////        JPanel panel = new JPanel(new BorderLayout());
+////        JLabel l = new JLabel("                   ID  CourseName    Class    Credit    isRequired   Department    " +
+////                "CurrentSeat   MaxSeat      Teacher  ");
+////        panel.add(l, BorderLayout.NORTH);
+//
+//        JPanel panel = new JPanel(new GridBagLayout());
+//
+//        GridBagConstraints addButton = new GridBagConstraints();
+//        GridBagConstraints id = new GridBagConstraints();
+//        GridBagConstraints classes = new GridBagConstraints();
+//        GridBagConstraints credit = new GridBagConstraints();
+//        GridBagConstraints isRequired = new GridBagConstraints();
+//        GridBagConstraints department = new GridBagConstraints();
+//        GridBagConstraints currentSeat = new GridBagConstraints();
+//        GridBagConstraints maxSeat = new GridBagConstraints();
+//        GridBagConstraints teacher = new GridBagConstraints();
+//
+//        addButton.gridx = 0;
+//        id.gridx = 1;
+//        classes.gridx = 2;
+//        credit.gridx = 3;
+//        isRequired.gridx = 4;
+//        department.gridx = 5;
+//        currentSeat.gridx = 6;
+//        maxSeat.gridx = 7;
+//        teacher.gridx = 8;
+//
+//        addButton.gridwidth = id.gridwidth = classes.gridwidth = credit.gridwidth = isRequired.gridwidth = department.gridwidth =
+//                currentSeat.gridwidth = maxSeat.gridwidth = teacher.gridwidth = 1;
+//
+//        addButton.ipadx = id.ipadx = classes.ipadx = credit.ipadx = isRequired.ipadx =
+//                department.ipadx = currentSeat.ipadx = maxSeat.ipadx = teacher.ipadx = 15;
+//
+//        addButton.gridheight = id.gridheight = classes.gridheight = credit.gridheight = isRequired.gridheight =
+//                department.gridheight = currentSeat.gridheight= maxSeat.gridheight = teacher.gridheight = 1;
+//
+//        addButton.weightx = id.weightx = classes.weightx = credit.weightx = isRequired.weightx =
+//                department.weightx = currentSeat.weightx = maxSeat.weightx = teacher.weightx = 1;
+//
+//        addButton.weighty = id.weighty = classes.weighty = credit.weighty = isRequired.weighty = department.weighty =
+//                currentSeat.weighty = maxSeat.weighty = teacher.weighty = 1;
+//
+////        addButton.fill = id.fill = classes.fill = credit.fill = isRequired.fill = department.fill =
+////                currentSeat.fill = maxSeat.fill = teacher.fill = GridBagConstraints.BOTH;
+//
+//        addButton.anchor = id.anchor = classes.anchor = credit.anchor = isRequired.anchor = department.anchor =
+//                currentSeat.anchor = maxSeat.anchor = teacher.anchor = GridBagConstraints.CENTER;
+//
+//        addButton.gridy = id.gridy = classes.gridy = credit.gridy = isRequired.gridy = department.gridy =
+//                currentSeat.gridy = maxSeat.gridy = teacher.gridy = 0;
+//
+//        JLabel idHeader = new JLabel("ID");
+//        JLabel classesHeader = new JLabel("CourseName");
+//        JLabel creditHeader = new JLabel("Credit");
+//        JLabel isRequiredHeader = new JLabel("isRequired");
+//        JLabel departmentHeader = new JLabel("Department");
+//        JLabel currentSeatHeader = new JLabel("CurrentSeat");
+//        JLabel maxSeatHeader = new JLabel("MaxSeat");
+//        JLabel teacherHeader = new JLabel("Teacher");
+//
+//        panel.add(idHeader, id);
+//        panel.add(classesHeader, classes);
+//        panel.add(creditHeader, credit);
+//        panel.add(isRequiredHeader, isRequired);
+//        panel.add(departmentHeader, department);
+//        panel.add(currentSeatHeader, currentSeat);
+//        panel.add(maxSeatHeader, maxSeat);
+//        panel.add(teacherHeader, teacher);
+//
+//        int index = 1;
+//
+//
+////        System.out.println(CourseDB.courseList.size());
+//        for(Course course: CourseDB.courseList) {
+//
+//            JButton button = new JButton("加選");
+////            JLabel label = new JLabel(course.ToCourseString());
+//
+//            JLabel idText = new JLabel(Integer.toString(course.GetCourseID()));
+//            JLabel classesText = new JLabel(course.GetCourseClass());
+//            JLabel creditText = new JLabel(Integer.toString(course.GetCredit()));
+//            JLabel isRequiredText = new JLabel(Boolean.toString(course.GetIsRequired()));
+//            JLabel departmentText = new JLabel(course.GetDepartment());
+//            JLabel currentSeatText = new JLabel(Integer.toString(course.GetCurrentSeat()));
+//            JLabel maxSeatText = new JLabel(Integer.toString(course.GetMaxSeat()));
+//            JLabel teacherText = new JLabel(course.GetTeacherName());
+//
+//            addButton.gridy = id.gridy = classes.gridy = credit.gridy = isRequired.gridy = department.gridy =
+//                    currentSeat.gridy = maxSeat.gridy = teacher.gridy = index;
+//
+//            panel.add(button, addButton);
+//            panel.add(idText, id);
+//            panel.add(classesText, classes);
+//            panel.add(creditText, credit);
+//            panel.add(isRequiredText, isRequired);
+//            panel.add(departmentText, department);
+//            panel.add(currentSeatText, currentSeat);
+//            panel.add(maxSeatText, maxSeat);
+//            panel.add(teacherText, teacher);
+//
+////            addButton.gridwidth = 1;
+////            classes.gridwidth = 4;
+////            credit.gridwidth = 2;
+////            isRequired.gridwidth = 2;
+////            department.gridwidth = 6;
+////            currentSeat.gridwidth = 2;
+////            maxSeat.gridwidth = 2;
+////            teacher.gridwidth = 3 ;
+//
+////            GridBagConstraints c0 = new GridBagConstraints();
+////            GridBagConstraints c1 = new GridBagConstraints();
+//
+////            GridBagConstraints typeSettins = new GridBagConstraints();
+////            c0.gridx = 0;
+////            c0.gridy = index;
+////            c0.gridwidth = 1;
+////            c0.gridheight = 1;
+////            c0.weightx = 0;
+////            c0.weighty = 0;
+////            c0.fill = GridBagConstraints.NONE;
+////            c0.anchor = GridBagConstraints.WEST;
+//
+////            for (int i = 0; i < CourseDB.courseList.size())
+////            c1.gridx = 1;
+////            c1.gridy = index;
+////            c1.gridwidth = 20;
+////            c1.gridheight = 1;
+////            c1.weightx = 0;
+////            c1.weighty = 0;
+////            c1.fill = GridBagConstraints.HORIZONTAL;
+////            c1.anchor = GridBagConstraints.WEST;
+//
+////            panel2.add(button, c0);
+////            panel2.add(label, c1);
+//
+//            if (index == 40) {
+//                break;
+//            }
+//
+//            index ++;
+//
+//        }
+////        panel.add(panel2, BorderLayout.CENTER);
+//        this.add(panel);
+//
+//
+//
+//
+//
+//    }
+//}
 
 
 // 篩選面板
@@ -391,9 +391,36 @@ class SelectPanel extends JPanel{
         //Teacher: teacherPanel
         JPanel teacherPanel = new JPanel();
         JLabel teacherLabel = new JLabel(" Teacher ");
-        JTextField teacherField = new JTextField(15);
+        JTextField teacherField = new JTextField(8);
         teacherPanel.add(teacherLabel);
         teacherPanel.add(teacherField);
+
+        //Week: weekPanel
+        JPanel weekPanel = new JPanel();
+        JLabel weekLabel = new JLabel(" Week ");
+        JComboBox weekCombox = new JComboBox();
+        weekCombox.addItem("NULL");
+        weekCombox.addItem("一");
+        weekCombox.addItem("二");
+        weekCombox.addItem("三");
+        weekCombox.addItem("四");
+        weekCombox.addItem("五");
+//        weekPanel.add(weekLabel);
+//        weekPanel.add(weekCombox);
+
+        //Time: timePanel
+        JPanel timePanel = new JPanel();
+        JLabel timeLabel = new JLabel(" Time ");
+        JComboBox timeCombox = new JComboBox();
+        timeCombox.addItem("NULL");
+        timeCombox.addItem("1");
+        timeCombox.addItem("2");
+        timeCombox.addItem("3");
+        timeCombox.addItem("4");
+        timeCombox.addItem("6");
+        timeCombox.addItem("7");
+        timeCombox.addItem("8");
+        timeCombox.addItem("9");
 
         // Button
         JButton search = new JButton("Search");
@@ -415,6 +442,10 @@ class SelectPanel extends JPanel{
         p2.add(departmentCombox);
         p2.add(teacherLabel);
         p2.add(teacherField);
+        p2.add(weekLabel);
+        p2.add(weekCombox);
+        p2.add(timeLabel);
+        p2.add(timeCombox);
 
         buttonPanel.add(search);
         buttonPanel.add(reset);
@@ -434,9 +465,10 @@ class SelectPanel extends JPanel{
                 String strClass = classCombox.getItemAt(classCombox.getSelectedIndex()).toString();
                 String strDepartment = departmentCombox.getItemAt(departmentCombox.getSelectedIndex()).toString();
                 String strTeacher = teacherField.getText();
+                String strWeek = weekCombox.getItemAt(weekCombox.getSelectedIndex()).toString();
+                String strTime = timeCombox.getItemAt(timeCombox.getSelectedIndex()).toString();
 
                 List<Course> copyList = new ArrayList<>(CourseDB.courseList);
-                List<Course> aCourseList;
 
                 // 每個條件篩選，假設不為空值的話
                 if(!strID.contentEquals("")){
@@ -453,6 +485,12 @@ class SelectPanel extends JPanel{
                 }
                 if(!strTeacher.contentEquals("")){
                     copyList = CourseDB.SearchTeacher(strTeacher, copyList);
+                }
+                if(!strWeek.contentEquals("NULL")){
+                    copyList = CourseDB.SearchWeek(strWeek, copyList);
+                }
+                if(!strTime.contentEquals("NULL")){
+                    copyList = CourseDB.SearchTime(strTime, copyList);
                 }
 
                 // 假設選擇有結果的話
@@ -475,6 +513,8 @@ class SelectPanel extends JPanel{
                 courseNameField.setText("");
                 departmentCombox.setSelectedItem("NULL");
                 teacherField.setText("");
+                weekCombox.setSelectedItem("NULL");
+                timeCombox.setSelectedItem("NULL");
             }
         });
     }
@@ -519,23 +559,34 @@ class AfterSelectPanel extends ScrollPane{
                 @Override
                 public void actionPerformed (ActionEvent e){
 
+
+
+
                     if (button[number].getText().equals("加選") && (course.GetCurrentSeat() >= course.GetMaxSeat())) {
                         System.out.println("無法加選！課程人數已達上限！");
                     }
                     else if (button[number].getText().equals("加選") && (course.GetCredit() + user.getNowCredit() > 25)) {
                         System.out.println("無法加選！修習學分已達上限！");
                     }
-                    else if (button[number].getText().equals("加選") && (course.GetCredit() + user.getNowCredit() <= 25)) {
+
+                    else if (button[number].getText().equals("加選") && user.addSchedule(course.GetTime()) == true) {
+//                        if (button[number].getText().equals("加選") && (course.GetCredit() + user.getNowCredit() <= 25)) {
                         button[number].setText("退選");
                         button[number].setForeground(Color.RED);
                         user.addCourse(course, course.GetCredit());
                         System.out.println("加選成功！");
+
+//                        }
                     }
                     else if (button[number].getText().equals("退選")) {
                         button[number].setText("加選");
                         button[number].setForeground(Color.BLACK);
                         user.delCourse(course, course.GetCredit());
+                        user.delSchedule(course.GetTime());
                         System.out.println("退選成功！");
+                    }
+                    else {
+                        System.out.println("衝堂！無法加選！");
                     }
                 }
             });
@@ -614,7 +665,6 @@ class AfterSelectPanel extends ScrollPane{
 }
 
 class CoursePanel extends ScrollPane {
-
     List<Course> course;
     int pageNumber = 1;
 
@@ -631,6 +681,7 @@ class CoursePanel extends ScrollPane {
     GridBagConstraints currentSeat;
     GridBagConstraints maxSeat;
     GridBagConstraints teacher;
+    GridBagConstraints time;
     GridBagConstraints resetButton;
 
     public CoursePanel() {
@@ -646,9 +697,8 @@ class CoursePanel extends ScrollPane {
         this.currentSeat = new GridBagConstraints();
         this.maxSeat = new GridBagConstraints();
         this.teacher = new GridBagConstraints();
+        this.time = new GridBagConstraints();
         this.resetButton = new GridBagConstraints();
-
-
     }
 
     public void setPanelElements() {
@@ -662,6 +712,7 @@ class CoursePanel extends ScrollPane {
         this.currentSeat.gridx = 80;
         this.maxSeat.gridx = 90;
         this.teacher.gridx = 100;
+        this.time.gridx = 110;
 
         this.addButton.gridwidth = 1;
         this.courseName.gridwidth = 15;
@@ -673,24 +724,25 @@ class CoursePanel extends ScrollPane {
         this.currentSeat.gridwidth = 5;
         this.maxSeat.gridwidth = 5;
         this.teacher.gridwidth = 10;
+        this.time.gridwidth = 6;
 
         addButton.ipadx = courseName.ipadx = id.ipadx = classes.ipadx = credit.ipadx = isRequired.ipadx =
-                department.ipadx = currentSeat.ipadx = maxSeat.ipadx = teacher.ipadx = 15;
+                department.ipadx = currentSeat.ipadx = maxSeat.ipadx = teacher.ipadx = time.ipadx = 15;
 
         addButton.gridheight = courseName.gridheight = id.gridheight = classes.gridheight = credit.gridheight = isRequired.gridheight =
-                department.gridheight = currentSeat.gridheight = maxSeat.gridheight = teacher.gridheight = 1;
+                department.gridheight = currentSeat.gridheight = maxSeat.gridheight = teacher.gridheight = time.gridheight = 1;
 
         addButton.weightx = courseName.weightx = id.weightx = classes.weightx = credit.weightx = isRequired.weightx =
-                department.weightx = currentSeat.weightx = maxSeat.weightx = teacher.weightx = 0;
+                department.weightx = currentSeat.weightx = maxSeat.weightx = teacher.weightx = time.weightx = 0;
 
         addButton.weighty = courseName.weighty = id.weighty = classes.weighty = credit.weighty = isRequired.weighty = department.weighty =
-                currentSeat.weighty = maxSeat.weighty = teacher.weighty = 0;
+                currentSeat.weighty = maxSeat.weighty = teacher.weighty = time.weighty = 0;
 
         addButton.anchor = courseName.anchor = id.anchor = classes.anchor = credit.anchor = isRequired.anchor = department.anchor =
-                currentSeat.anchor = maxSeat.anchor = teacher.anchor = GridBagConstraints.CENTER;
+                currentSeat.anchor = maxSeat.anchor = teacher.anchor = time.anchor = GridBagConstraints.CENTER;
 
         addButton.gridy = courseName.gridy = id.gridy = classes.gridy = credit.gridy = isRequired.gridy = department.gridy =
-                currentSeat.gridy = maxSeat.gridy = teacher.gridy = 0;
+                currentSeat.gridy = maxSeat.gridy = teacher.gridy = time.gridy = 0;
     }
 
     public void addHeader() {
@@ -703,6 +755,7 @@ class CoursePanel extends ScrollPane {
         JLabel currentSeatHeader = new JLabel("CurrentSeat");
         JLabel maxSeatHeader = new JLabel("MaxSeat");
         JLabel teacherHeader = new JLabel("Teacher");
+        JLabel timeHeader = new JLabel("Time(Week)");
 
         this.panel.add(idHeader, id);
         this.panel.add(courseNameHeader, courseName);
@@ -713,6 +766,7 @@ class CoursePanel extends ScrollPane {
         this.panel.add(currentSeatHeader, currentSeat);
         this.panel.add(maxSeatHeader, maxSeat);
         this.panel.add(teacherHeader, teacher);
+        this.panel.add(timeHeader, time);
     }
 
     public void addCourseIntoTable(Course course, int index, JButton button) {
@@ -726,9 +780,10 @@ class CoursePanel extends ScrollPane {
         JLabel currentSeatText = new JLabel(Integer.toString(course.GetCurrentSeat()));
         JLabel maxSeatText = new JLabel(Integer.toString(course.GetMaxSeat()));
         JLabel teacherText = new JLabel(course.GetTeacherName());
+        JLabel timeText = new JLabel(course.GetTime());
 
         this.addButton.gridy = this.courseName.gridy = this.id.gridy = this.classes.gridy = this.credit.gridy = this.isRequired.gridy = this.department.gridy =
-                this.currentSeat.gridy = this.maxSeat.gridy = this.teacher.gridy = index + 1;
+                this.currentSeat.gridy = this.maxSeat.gridy = this.teacher.gridy = this.time.gridy = index + 1;
 
         this.panel.add(button, addButton);
         this.panel.add(courseNameText, courseName);
@@ -740,7 +795,7 @@ class CoursePanel extends ScrollPane {
         this.panel.add(currentSeatText, currentSeat);
         this.panel.add(maxSeatText, maxSeat);
         this.panel.add(teacherText, teacher);
-
+        this.panel.add(timeText, time);
     }
 
 //    public void panelLayout(JFrame frame) {

@@ -9,8 +9,6 @@ public class User {
     private String user_id;
     private String password;
 
-
-
     public User(String id, String password){
        this.user_id = id;
        this.password = password;

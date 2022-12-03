@@ -32,6 +32,7 @@ public class CourseDB {
         int c_seat;
         int m_seat;
         String teacher;
+        String time;
         // 存入所有課程
         for (int i = 0; i < Course.courseNum; i++) {
             id = Course.returnCourseID(i);
@@ -43,7 +44,8 @@ public class CourseDB {
             c_seat = Course.returnCurrentSeat(i);
             m_seat = Course.returnMaxSeat(i);
             teacher = Course.returnTeacherName(i);
-            course = new Course(id, name, Class, credit, isRequired, department, c_seat, m_seat, teacher);
+            time = Course.returnWeekName(i);
+            course = new Course(id, name, Class, credit, isRequired, department, c_seat, m_seat, teacher, time);
             courseList.add(course);
 
         }
@@ -134,6 +136,51 @@ public class CourseDB {
                 newList.add(course);
             }
         }
+        return newList;
+    }
+
+    public static List<Course> SearchWeek(String week, List<Course> courseList) {
+        List<Course> newList = new ArrayList<>();
+        for (Course course: courseList) {
+            StringTokenizer token = new StringTokenizer(course.GetTime(), "()");
+            String weekToken = new String();
+//            weekToken = token.nextToken();
+
+            while (token.hasMoreElements()) {
+                weekToken = token.nextToken();
+            }
+
+            if (week.contentEquals(weekToken)) {
+                newList.add(course);
+            }
+        }
+
+        return newList;
+    }
+
+    public static List<Course> SearchTime(String time, List<Course> courseList) {
+        List<Course> newList = new ArrayList<>();
+        for (Course course: courseList) {
+            StringTokenizer token = new StringTokenizer(course.GetTime(), "()");
+            StringTokenizer timeToken = new StringTokenizer(token.nextToken(), "-");
+
+            List<Integer> timeScope = new ArrayList();
+
+            int timeSearch = Integer.parseInt(time);
+
+            while (timeToken.hasMoreElements()) {
+//                System.out.println(timeToken.nextToken());
+                timeScope.add(Integer.parseInt(timeToken.nextToken()));
+            }
+
+            if (timeScope.size() == 2 && timeSearch >= (timeScope.get(0)) && timeSearch <= (timeScope.get(1))) {
+                newList.add(course);
+            }
+            else if (timeScope.size() == 1 && timeSearch == timeScope.get(0)) {
+                newList.add(course);
+            }
+        }
+
         return newList;
     }
 
