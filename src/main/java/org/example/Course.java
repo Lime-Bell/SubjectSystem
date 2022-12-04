@@ -4248,9 +4248,9 @@ public class Course {
         return this.credit;
     }
 
-    public Boolean GetIsRequired(){
-        return this.isRequired;
-    }
+//    public Boolean GetIsRequired(){
+//        return this.isRequired;
+//    }
 
     public String GetDepartment(){
         return this.department;
@@ -4275,32 +4275,33 @@ public class Course {
     public int courseLength = str.length();
 
 //     將一堂課程的所有資訊變為字串型態
-    public String ToCourseString(){
-        str = "";
-        str += StringAline(String.valueOf(courseID), CourseDB.maxIDLength);
-        str += StringAline(courseName, CourseDB.maxNameLength);
-        str += StringAline(courseClass, CourseDB.maxClassLength);
-        str += StringAline(String.valueOf(credit), CourseDB.maxCreditLength);
-        str += StringAline(isRequired.toString(), CourseDB.maxisRequiredLength);
-        str += StringAline(department, CourseDB.maxDepartmentLength);
-        str += StringAline(String.valueOf(currentSeat), CourseDB.maxCurrentSeatLength);
-        str += StringAline(String.valueOf(maxSeat), CourseDB.maxMaxSeatLength);
-        str += StringAline(teacherName, CourseDB.maxTeacherLength);
-        str += StringAline(String.valueOf(weekTime), CourseDB.maxWeekTimeLength);
-
-//        System.out.println(str);
-        return (str);
-
-    }
-
-    public String StringAline(String str, int length){
-        int d = length - str.length();
-        if(d > 0){
-            for(int i = 0; i < d; i++){
-                str+= " ";
-            }
-        }
-        return str;
-    }
+//    public String ToCourseString(){
+//        str = "";
+//        str += StringAline(String.valueOf(courseID), CourseDB.maxIDLength);
+//        str += StringAline(courseName, CourseDB.maxNameLength);
+//        str += StringAline(courseClass, CourseDB.maxClassLength);
+//        str += StringAline(String.valueOf(credit), CourseDB.maxCreditLength);
+//        str += StringAline(isRequired.toString(), CourseDB.maxisRequiredLength);
+//        str += StringAline(department, CourseDB.maxDepartmentLength);
+//        str += StringAline(String.valueOf(currentSeat), CourseDB.maxCurrentSeatLength);
+//        str += StringAline(String.valueOf(maxSeat), CourseDB.maxMaxSeatLength);
+//        str += StringAline(teacherName, CourseDB.maxTeacherLength);
+//        str += StringAline(String.valueOf(weekTime), CourseDB.maxWeekTimeLength);
+//
+////        System.out.println(str);
+//        return (str);
+//
+//    }
+//
+//    public String StringAline(String str, int length){
+//        int d = length - str.length();
+//        if(d > 0){
+//            for(int i = 0; i < d; i++){
+//                str+= " ";
+//            }
+//        }
+//        return str;
+//    }
+//
 
 }

@@ -57,41 +57,41 @@ public class CourseDB {
 
     }
     // 回傳所有Class
-    public static List<String> ReturnAllClass() {
-        List<String> classList = new ArrayList<>();
-        for(int i = 0; i < Course.courseNum; i++){
-            String d = Course.returnCourseClass(i);
-            if(classList.contains(d)){
-                continue;
-            }
-            classList.add(d);
-        }
-        return classList;
-    }
-
-    //回傳所有Department
-    public static List<String> ReturnAllDepartment(){
-        List<String> departmentList = new ArrayList<>();
-        for(int i = 0; i < Course.courseNum; i++){
-            String d = Course.returnDepartment(i);
-            if(departmentList.contains(d)){
-                continue;
-            }
-            departmentList.add(d);
-        }
-        return departmentList;
-    }
-    // 將List<Course> 變成 List<String>
-    public  static List<String> ToList(List<Course> courseList){
-
-        List<String> l = new ArrayList<>();
-
-        for(Course course: courseList){
-            l.add(course.ToCourseString());
-        }
-
-        return l;
-    }
+//    public static List<String> ReturnAllClass() {
+//        List<String> classList = new ArrayList<>();
+//        for(int i = 0; i < Course.courseNum; i++){
+//            String d = Course.returnCourseClass(i);
+//            if(classList.contains(d)){
+//                continue;
+//            }
+//            classList.add(d);
+//        }
+//        return classList;
+//    }
+//
+//    //回傳所有Department
+//    public static List<String> ReturnAllDepartment(){
+//        List<String> departmentList = new ArrayList<>();
+//        for(int i = 0; i < Course.courseNum; i++){
+//            String d = Course.returnDepartment(i);
+//            if(departmentList.contains(d)){
+//                continue;
+//            }
+//            departmentList.add(d);
+//        }
+//        return departmentList;
+//    }
+//    // 將List<Course> 變成 List<String>
+//    public  static List<String> ToList(List<Course> courseList){
+//
+//        List<String> l = new ArrayList<>();
+//
+//        for(Course course: courseList){
+//            l.add(course.ToCourseString());
+//        }
+//
+//        return l;
+//    }
 
     // 搜尋符合的courseID 在 courseList裡
     public static List<Course> SearchID(String id, List<Course> courseList){
