@@ -35,7 +35,8 @@ class IntegrateTest {
         assertEquals("Add Success!", add.addCourse(copyList.get(0)));
         assertEquals("課程人數已滿, Add Failed!", add.addCourse(copyList.get(99)));
 
-        assertEquals(2, courseNum.myCourse()); // 現有共2堂課
+        assertEquals(2, courseNum.myCourse());  // 目前共2堂課
+        assertEquals(3, add.showCredit());      // 目前共3學分
 
         // 嘗試退1堂課
         assertEquals("Del Success!", del.delCourse(copyList.get(0)));
@@ -49,7 +50,8 @@ class IntegrateTest {
         assertEquals("課程人數已滿, Add Failed!", add.addCourse(copyList.get(133)));
         assertEquals("Add Success!", add.addCourse(copyList.get(233)));
 
-        assertEquals(3, courseNum.myCourse()); // 現有共3堂課
+        assertEquals(8, add.showCredit());      // 目前共8學分
+        assertEquals(3, courseNum.myCourse());  // 目前共3堂課
 
 //        System.out.println(copyList.get(133).ToCourseString());
 //        assertEquals();

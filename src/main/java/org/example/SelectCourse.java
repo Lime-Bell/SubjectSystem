@@ -42,13 +42,21 @@ public class SelectCourse {
         }
 
         // 假設選擇有結果的話
-        if (!copyList.equals(CourseDB.courseList) && !copyList.isEmpty()){
-//            System.out.println(copyList.size());
-            return copyList.size();
+//        if (!copyList.equals(CourseDB.courseList) && !copyList.isEmpty()){
+////            System.out.println(copyList.size());
+//            return copyList.size();
+//        }
+//        else {
+////            System.out.println("Has Error, Please select again!");
+//            return 0;
+//        }
+
+        if (copyList.equals(CourseDB.courseList) && copyList.isEmpty()){
+            return 0;
+//            return copyList.size();
         }
         else {
-//            System.out.println("Has Error, Please select again!");
-            return 0;
+            return copyList.size();
         }
     }
 }

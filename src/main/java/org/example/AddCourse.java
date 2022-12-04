@@ -31,13 +31,18 @@ public class AddCourse {
 
             return "Add Success!";
         }
-        else if (myCourse.user.addSchedule(course.GetTime()) == false) {
-//            System.out.println("衝堂, Add Failed!");
+        else {
             return "衝堂, Add Failed!";
         }
-        else {
-            return "沒有該課程, Add Failed!";
-        }
+//        else {
+//            return "沒有該課程, Add Failed!";
+//        }
 
+    }
+
+    public int showCredit() {
+        myCourse = new MyCourse();
+
+        return myCourse.user.getNowCredit();
     }
 }

@@ -8,6 +8,7 @@ public class DelCourse {
 
         if (myCourse.user.getCourse().contains(course)) {
             myCourse.user.delCourse(course, course.GetCredit());
+            myCourse.user.delSchedule(course.GetTime());
             return "Del Success!";
         }
         else {

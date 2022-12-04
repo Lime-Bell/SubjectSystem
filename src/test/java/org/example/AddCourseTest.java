@@ -40,6 +40,7 @@ class AddCourseTest {
             add(add.addCourse(copyList.get(301)));
             add(add.addCourse(copyList.get(400)));
             add(add.addCourse(copyList.get(5)));
+            add(add.addCourse(copyList.get(317)));
         }};
 
 
@@ -63,6 +64,7 @@ class AddCourseTest {
         assertEquals("課程人數已滿, Add Failed!", addTestArray.get(1));
         assertEquals("Add Success!", addTestArray.get(2));
         assertEquals("課程人數已滿, Add Failed!", addTestArray.get(3));
+
         assertEquals("課程人數已滿, Add Failed!", addTestArray.get(4));
         assertEquals("Add Success!", addTestArray.get(5));
         assertEquals("Add Success!", addTestArray.get(6));
@@ -73,8 +75,11 @@ class AddCourseTest {
         assertEquals("學分已達上限, Add Failed!", addTestArray.get(11));
         assertEquals("學分已達上限, Add Failed!", addTestArray.get(12));
         assertEquals("衝堂, Add Failed!", addTestArray.get(13));
+        assertEquals("Add Success!", addTestArray.get(14));
 
-        assertEquals(5, courseNum.myCourse());  // 目前共5堂課
+        assertEquals(8, add.showCredit());      // 目前共8學分
+
+        assertEquals(6, courseNum.myCourse());  // 目前共5堂課
     }
 
 

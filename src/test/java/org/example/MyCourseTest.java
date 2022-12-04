@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MyCourseTest {
     AddCourse add;
-    MyCourse courseNum;
+    MyCourse myData;
 
     @BeforeEach
     void setUp() {
@@ -15,12 +15,12 @@ class MyCourseTest {
         UserDB.Initialized();
 
         add = new AddCourse();
-        courseNum = new MyCourse();
+        myData = new MyCourse();
     }
 
     @Test
     void myCourse() {
 
-        assertEquals(0, courseNum.myCourse()); // 初始共0堂課
+        assertEquals(0, myData.myCourse()); // 初始共0堂課
     }
 }

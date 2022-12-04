@@ -3,9 +3,11 @@ package org.example;
 import java.util.List;
 
 public class MyCourse {
-    public static UserDB user = new UserDB();
+    public UserDB user = new UserDB();
+
 
 //    public List<Course> courseList;     // 不能為static
+
 
     public int myCourse() {
 //        courseList = user.getCourse();
