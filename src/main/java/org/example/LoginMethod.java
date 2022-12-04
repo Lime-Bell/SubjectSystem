@@ -14,7 +14,7 @@ public class LoginMethod {
 
         // 假設輸入的id, pwd 存在 UserDB
 
-        System.out.println(userid);
+//        System.out.println(userid);
 
         if (myCourse.user.isUser(userid, password)){
 
