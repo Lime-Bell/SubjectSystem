@@ -19,21 +19,22 @@ public class User {
 
     public static int User_Num = UserIDList.length;
     public static String ReturnUserIDList(int index){
-        if(index < UserIDList.length){
-            return UserIDList[index];
-        }
-        else {
-            return "Wrong";
-        }
+//        if(index < UserIDList.length){
+        return UserIDList[index];
+//        }
+//        else {
+//            return "Wrong";
+//        }
     }
+
     // 回傳所有的密碼
     public static String ReturnPasswordList(int index) {
-        if(index < PasswordList.length){
-            return PasswordList[index];
-        }
-        else {
-            return "Wrong";
-        }
+//        if (index < PasswordList.length){
+        return PasswordList[index];
+//        }
+//        else {
+//            return "Wrong";
+//        }
     }
 
 

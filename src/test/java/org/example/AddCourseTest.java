@@ -58,6 +58,7 @@ class AddCourseTest {
 //        System.out.println(copyList.get(301).ToCourseString());
 //        System.out.println(copyList.get(400).ToCourseString());
 //        System.out.println(copyList.get(5).ToCourseString());
+//        System.out.println(copyList.get(317).ToCourseString());
 
 //         Assert
         assertEquals("Add Success!", addTestArray.get(0));

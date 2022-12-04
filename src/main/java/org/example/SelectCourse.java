@@ -51,12 +51,13 @@ public class SelectCourse {
 //            return 0;
 //        }
 
-        if (copyList.equals(CourseDB.courseList) && copyList.isEmpty()){
-            return 0;
+
+//        if (copyList.isEmpty()){
+//            return 0;
 //            return copyList.size();
-        }
-        else {
-            return copyList.size();
-        }
+//        }
+//        else {
+        return copyList.size();
+//        }
     }
 }

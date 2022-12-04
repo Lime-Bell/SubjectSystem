@@ -4132,102 +4132,103 @@ public class Course {
     }
 
     public static int returnCourseID(int index) {
-        if (index <= courseNum) {
-            return CourseID[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return 0;
-        }
+//        if (index <= courseNum) {
+        return CourseID[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return 0;
+//        }
 
     }
 
     public static String returnCourseName(int index) {
-        if (index <= courseNum) {
-            return CourseName[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return "Wrong";
-        }
+//        if (index <= courseNum) {
+        return CourseName[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return "Wrong";
+//        }
 
     }
 
     public static String returnCourseClass(int index) {
-        if (index <= courseNum) {
-            return CourseClass[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return "Wrong";
-        }
+//        if (index <= courseNum) {
+        return CourseClass[index];
+//        }
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return "Wrong";
+//        }
 
     }
 
     public static int returnCredit(int index) {
-        if (index <= courseNum) {
-            return Credit[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return 0;
-        }
+//        if (index <= courseNum) {
+        return Credit[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return 0;
+//        }
 
     }
 
     public static Boolean returnIsRequired(int index) {
-        if (index <= courseNum) {
-            return IsRequired[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return false;
-        }
+//        if (index <= courseNum) {
+        return IsRequired[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return false;
+//        }
 
     }
 
     public static String returnDepartment(int index) {
-        if (index <= courseNum) {
-            return Department[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return "wrong";
-        }
+//        if (index <= courseNum) {
+        return Department[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return "wrong";
+//        }
 
     }
 
     public static int returnCurrentSeat(int index) {
-        if (index <= courseNum) {
-            return CurrentSeat[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return 0;
-        }
+//        if (index <= courseNum) {
+        return CurrentSeat[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return 0;
+//        }
 
     }
 
     public static int returnMaxSeat(int index) {
-        if (index <= courseNum) {
-            return MaxSeat[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return 0;
-        }
+//        if (index <= courseNum) {
+        return MaxSeat[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return 0;
+//        }
 
     }
 
     public static String returnTeacherName(int index) {
-        if (index <= courseNum) {
-            return TeacherName[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return "wrong";
-        }
+//        if (index <= courseNum) {
+        return TeacherName[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return "wrong";
+//        }
 
     }
 
     public static String returnWeekName(int index) {
-        if (index <= courseNum) {
-            return Time[index];
-        } else {
-            System.out.println("out the range of CourseList");
-            return "wrong";
-        }
+//        if (index <= courseNum) {
+        return Time[index];
+//        } else {
+//            System.out.println("out the range of CourseList");
+//            return "wrong";
+//        }
 
     }
 
@@ -4273,7 +4274,7 @@ public class Course {
     String str = "";
     public int courseLength = str.length();
 
-    // 將一堂課程的所有資訊變為字串型態
+//     將一堂課程的所有資訊變為字串型態
     public String ToCourseString(){
         str = "";
         str += StringAline(String.valueOf(courseID), CourseDB.maxIDLength);
