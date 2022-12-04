@@ -17,8 +17,6 @@ public class User {
     private static String[] UserIDList ={"joe", "amy"};
     private static String[] PasswordList = {"1234", "4321"};
 
-
-
     public static int User_Num = UserIDList.length;
     public static String ReturnUserIDList(int index){
         if(index < UserIDList.length){

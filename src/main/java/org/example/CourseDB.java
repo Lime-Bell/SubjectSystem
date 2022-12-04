@@ -6,10 +6,10 @@ import java.util.*;
 
 public class CourseDB {
     // Total 課程列表
-    public static List<Course> courseList = new ArrayList<>();
+    public static List<Course> courseList;
 
     // 供回傳字串長度設定
-    public static int maxIDLength = 7;
+    public static int maxIDLength = 8;
     public static int maxNameLength = 20;
     public static int maxClassLength = 15;
     public static int maxCreditLength = 5;
@@ -18,6 +18,8 @@ public class CourseDB {
     public static int maxCurrentSeatLength = 4;
     public static int maxMaxSeatLength = 4;
     public static int maxTeacherLength = 5;
+
+    public static int maxWeekTimeLength = 5;
 
 
     // 初始化 CourseDB
@@ -33,6 +35,9 @@ public class CourseDB {
         int m_seat;
         String teacher;
         String time;
+
+        courseList = new ArrayList<>();
+
         // 存入所有課程
         for (int i = 0; i < Course.courseNum; i++) {
             id = Course.returnCourseID(i);
@@ -52,7 +57,7 @@ public class CourseDB {
 
     }
     // 回傳所有Class
-    public static List<String> ReturnAllClass(){
+    public static List<String> ReturnAllClass() {
         List<String> classList = new ArrayList<>();
         for(int i = 0; i < Course.courseNum; i++){
             String d = Course.returnCourseClass(i);

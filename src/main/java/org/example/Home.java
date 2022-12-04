@@ -126,8 +126,6 @@ class MyPanel extends JPanel {
 
                 index++;
             }
-
-
         }
 
         panel.addResetButton(frame, index);
@@ -499,7 +497,7 @@ class SelectPanel extends JPanel{
                     frame.revalidate();
                 }
                 else{
-                    System.out.println("Has Error\nPlease select again!");
+                    System.out.println("Has Error, Please select again!");
                 }
             }
         });
@@ -559,24 +557,18 @@ class AfterSelectPanel extends ScrollPane{
                 @Override
                 public void actionPerformed (ActionEvent e){
 
-
-
-
                     if (button[number].getText().equals("加選") && (course.GetCurrentSeat() >= course.GetMaxSeat())) {
                         System.out.println("無法加選！課程人數已達上限！");
                     }
-                    else if (button[number].getText().equals("加選") && (course.GetCredit() + user.getNowCredit() > 25)) {
+                    else if (button[number].getText().equals("加選") && (course.GetCredit() + user.getNowCredit() > user.maxCredit)) {
                         System.out.println("無法加選！修習學分已達上限！");
                     }
-
                     else if (button[number].getText().equals("加選") && user.addSchedule(course.GetTime()) == true) {
 //                        if (button[number].getText().equals("加選") && (course.GetCredit() + user.getNowCredit() <= 25)) {
                         button[number].setText("退選");
                         button[number].setForeground(Color.RED);
                         user.addCourse(course, course.GetCredit());
                         System.out.println("加選成功！");
-
-//                        }
                     }
                     else if (button[number].getText().equals("退選")) {
                         button[number].setText("加選");

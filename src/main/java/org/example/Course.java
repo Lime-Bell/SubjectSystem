@@ -4285,6 +4285,7 @@ public class Course {
         str += StringAline(String.valueOf(currentSeat), CourseDB.maxCurrentSeatLength);
         str += StringAline(String.valueOf(maxSeat), CourseDB.maxMaxSeatLength);
         str += StringAline(teacherName, CourseDB.maxTeacherLength);
+        str += StringAline(String.valueOf(weekTime), CourseDB.maxWeekTimeLength);
 
 //        System.out.println(str);
         return (str);

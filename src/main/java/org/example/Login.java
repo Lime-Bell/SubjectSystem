@@ -57,7 +57,7 @@ public class Login {
                 password = String.valueOf(pwdField.getPassword());
 
                 // 假設輸入的id, pwd 存在 UserDB
-                if(UserDB.isUser(userid, password)){
+                if (UserDB.isUser(userid, password)){
                     UserDB user = new UserDB();
                     user.setNowUser(userid);
                     System.out.println("Login Success");
